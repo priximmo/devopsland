@@ -2,16 +2,30 @@
 %author: xavki
 
 
+# Who am I ? 
+
+* a french youtubeur named xavki
+
+* a Site Reliability Engineer
+
+* love and practice devops
+
+* share my experience
+
+>> subscribe to my channel to not miss the next videos <<
+
+
 # 01 ANSIBLE : INTRODUCTION
 
 
+<br>
 ## Where does ansible come from ?
 
 <br>
 * Ansible was create in 2012 by Michael DeHaan (who create cobler)
 
 <br>
-* In 2015, Ansible take over ansible project
+* In 2015, Redhat take over ansible project
 
 <br>
 * Today ansible has one of the biggest orchestrator community
