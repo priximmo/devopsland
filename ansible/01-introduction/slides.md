@@ -19,6 +19,7 @@
 
 
 <br>
+
 ## Where does ansible come from ?
 
 <br>
@@ -37,6 +38,7 @@
 * some competitors : puppet, chef, salt, capistrano
 
 <br>
+
 ## Documentation
 
 * https://docs.ansible.com/
@@ -49,6 +51,7 @@
 
 
 <br>
+
 ## Fundamental
 
 <br>
@@ -61,6 +64,7 @@
 * Ansible use ssh connexion to play tasks
 
 <br>
+
 ## Why use ansible ?
 
 <br>
