@@ -34,7 +34,7 @@
 # 06 ANSIBLE : INVENTORY, ITS STRUCTURE
 
 
-## The struture ?
+## The structure ?
 
 <br>
 
@@ -54,7 +54,7 @@
 
 * inventory = inventory file + host_vars dir + group_vars dir
 
-NOT ONLY INVETORY FILE
+NOT ONLY INVENTORY FILE
 
 <br>
 
