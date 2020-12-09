@@ -22,7 +22,7 @@
 3 ways to do it :
 
 		* ~/.ansible/ansible.cfg
-    * /etc/ansible/ansible.cfg
+		* /etc/ansible/ansible.cfg
 		* in your playbook directory
 		* specify it in ANSIBLE_CONFIG 
 

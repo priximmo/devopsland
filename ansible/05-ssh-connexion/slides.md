@@ -17,6 +17,8 @@
 
 * Ansible use ssh connection to push your tasks
 
+<br>
+
 ## Why use a ssh key ?
 
 * without configuration, ssh allow password connection
