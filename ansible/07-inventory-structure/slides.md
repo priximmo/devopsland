@@ -2,7 +2,7 @@
 %author: xavki
 
 
-# 06 ANSIBLE : INVENTORY, ITS STRUCTURE
+# 07 ANSIBLE : INVENTORY, ITS STRUCTURE
 
 <br>
 
