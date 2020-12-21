@@ -16,9 +16,13 @@
 
 * doesn't run file and code (just the command line)
 
+<br>
+
 * useful :
 		* to debug
 		* to run one simple task
+
+<br>
 
 * but the same options as the ansible-playbook command
 
