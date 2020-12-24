@@ -21,6 +21,7 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
 
 RUN ln -s /lib/systemd/system /sbin/init
 RUN systemctl set-default multi-user.target
+#set password to "password"
 RUN sed -i 's#root:\*#root:sa3tHJ3/KuYvI#' /etc/shadow
 ENV init /lib/systemd/systemd
 VOLUME [ "/sys/fs/cgroup" ]
