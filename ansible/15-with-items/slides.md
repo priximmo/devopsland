@@ -28,6 +28,10 @@ or : ansible-doc <module_name>
 
 * with_dict : loop on dictionnary
 
+---------------------------------------------------------------------------------------
+
+# 14 ANSIBLE : LOOPS & WITH ITEMS
+
 <br>
 
 * with_fileglob : list of files in a directory (can use pattern) but not recursive
@@ -66,7 +70,6 @@ or : ansible-doc <module_name>
 
 ---------------------------------------------------------------------------------------
 
-
 # 14 ANSIBLE : LOOPS & WITH ITEMS
 
 
@@ -87,6 +90,10 @@ or : ansible-doc <module_name>
     - xavki4
 ```
 
+---------------------------------------------------------------------------------------
+
+# 14 ANSIBLE : LOOPS & WITH ITEMS
+
 <br>
 
 * with a list of dictionnaries
@@ -98,7 +105,7 @@ or : ansible-doc <module_name>
       state: touch
     with_items:
     - { dir: "xavki1", file: "fileA"}
-    - { dir: "xavki2", file: "file"}
+    - { dir: "xavki2", file: "fileB"}
     - { dir: "xavki3", file: "fileC"}
     - { dir: "xavki4", file: "fileD"}
 ```

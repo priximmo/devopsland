@@ -2,7 +2,7 @@
 %author: xavki
 
 
-# 14 ANSIBLE : MODULE STAT & REGISTER
+# 14 ANSIBLE : STAT MODULE & REGISTER
 
 <br>
 
