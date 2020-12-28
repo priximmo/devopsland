@@ -23,7 +23,7 @@ or : ansible-doc <module_name>
 
 <br>
 
-OBJECTIVE OF THIS MODULE
+PURPOSE
 
 >> manage files, directories and symbolic links
 
