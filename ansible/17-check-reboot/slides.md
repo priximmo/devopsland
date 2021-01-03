@@ -135,6 +135,7 @@ PARAMETERS
       register: reboot_required_file
       stat:
         path: /var/run/reboot-required
+      register: reboot_required_file
 
     - name: launch the reboot
       reboot:

@@ -2,7 +2,7 @@
 %author: xavki
 
 
-# 18 ANSIBLE : MODULE SSH (GENERATE AN PUSH)
+# 18 ANSIBLE : MODULES SSH (GENERATE AND PUSH)
 
 <br>
 
@@ -48,6 +48,10 @@ PARAMETERS : the openssh_keypair module
 <br>
 
 * owner : set the owner
+
+-----------------------------------------------------------------------------
+
+# 18 ANSIBLE : MODULE SSH (GENERATE AN PUSH)
 
 <br>
 
