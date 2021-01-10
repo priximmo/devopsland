@@ -22,7 +22,7 @@ PURPOSE : collect some files on target servers
 
 <br>
 
-* fail_on_missing : generate an error of the file is not present (default yes)
+* fail_on_missing : generate an error if the file is not present (default yes)
 
 <br>
 
