@@ -1,0 +1,4 @@
+---
+# defaults file for roles/nginx_webserver
+
+install_nginx_port: 80
