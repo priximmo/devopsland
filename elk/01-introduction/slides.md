@@ -1,8 +1,13 @@
-%title: LEARN ANSIBLE
+%title: LEARN ELK
 %author: xavki
 
+# 01 ELK Stack : INTRODUCTION
 
-# Who am I ? 
+<br>
+
+## Who am I ? 
+
+<br>
 
 * a french youtubeur named xavki
 
@@ -11,6 +16,8 @@
 * love and practice devops
 
 * share my experience
+
+<br>
 
 >> subscribe to my channel to not miss the next videos <<
 

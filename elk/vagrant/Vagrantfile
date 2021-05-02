@@ -1,0 +1,72 @@
+Vagrant.configure(2) do |config|
+
+	# Set some variables
+  etcHosts = ""
+  docker = ""  
+
+  case ARGV[0]
+    when "provision", "up"
+
+    print "Docker and Compose ? (y/n)\n"
+    docker = STDIN.gets.chomp
+    print "\n"
+
+  end
+
+  common = <<-SHELL
+  sudo apt update -qq 2>&1 >/dev/null
+  sudo apt install -y -qq git vim tree net-tools telnet python3-pip 2>&1 >/dev/null
+  sudo echo "autocmd filetype yaml setlocal ai ts=2 sw=2 et" > /home/vagrant/.vimrc
+  sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
+  sudo systemctl restart sshd
+  SHELL
+
+  dockerpackages = <<-SHELL
+  curl -fsSL https://get.docker.com -o get-docker.sh 2>&1 >/dev/null
+  sudo sh get-docker.sh 2>&1 >/dev/null
+  sudo usermod -aG docker vagrant
+  sudo service docker start
+  sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod 755 /usr/local/bin/docker-compose
+  SHELL
+
+	# set vagrant image
+	config.vm.box = "ubuntu/focal64"
+	config.vm.box_url = "ubuntu/focal64"
+
+	# set servers list and their parameters
+	NODES = [
+  	{ :hostname => "elastic1", :ip => "192.168.16.41", :cpus => 4, :mem => 8192, :type => "elk" },
+  	{ :hostname => "elastic2", :ip => "192.168.16.42", :cpus => 4, :mem => 4096, :type => "elk" },
+  	{ :hostname => "elastic3", :ip => "192.168.16.43", :cpus => 4, :mem => 4096, :type => "elk" }
+	]
+
+	# define /etc/hosts for all servers
+  NODES.each do |node|
+   	etcHosts += "echo '" + node[:ip] + "   " + node[:hostname] + "' >> /etc/hosts" + "\n"
+  end #end NODES
+
+	# run installation
+  NODES.each do |node|
+    config.vm.define node[:hostname] do |cfg|
+			cfg.vm.hostname = node[:hostname]
+      cfg.vm.network "private_network", ip: node[:ip]
+      cfg.vm.provider "virtualbox" do |v|
+				v.customize [ "modifyvm", :id, "--cpus", node[:cpus] ]
+        v.customize [ "modifyvm", :id, "--memory", node[:mem] ]
+        v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+        v.customize ["modifyvm", :id, "--name", node[:hostname] ]
+      end #end provider
+			
+			#for all
+      cfg.vm.provision :shell, :inline => etcHosts
+			cfg.vm.provision :shell, :inline => common
+
+      if docker == "y"
+			  cfg.vm.provision :shell, :inline => docker
+      end
+
+    end # end config
+  end # end nodes
+end 

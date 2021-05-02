@@ -1,3 +1,4 @@
-ansible/vagrant/.vagrant/*
-ansible/vagrant/*.log
-ansible/vagrant/*.box
+*/vagrant/.vagrant/*
+*/vagrant/*.log
+*/vagrant/*.box
+
