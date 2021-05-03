@@ -6,10 +6,6 @@
 
 <br>
 
->> subscribe to my channel <<
-
-<br>
-
 * 23 types of variables :
 
 ``` 
