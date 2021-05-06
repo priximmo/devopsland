@@ -22,7 +22,7 @@ Purposes :
 
 <br>
 
-* filebeat > beat family
+* filebeat > beats family (metricbeat, heartbeat...)
 
 * filebeat > send logs directly in elasticsearch
 
