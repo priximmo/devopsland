@@ -161,6 +161,7 @@ node_exporter_dir_conf: /etc/node_exporter
     src: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
     dest: /tmp/
     remote_src: yes
+    validate_certs: no
   when: __check_node_exporter_present.stat.exists == false
 ```
 
