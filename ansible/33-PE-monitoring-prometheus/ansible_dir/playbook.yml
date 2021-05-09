@@ -1,0 +1,11 @@
+- name: install prometheus
+  hosts: monitor
+  become: yes
+  roles:
+  - prometheus
+
+- name: install node-exporter
+  hosts: all
+  become: yes
+  roles:
+  - node-exporter
