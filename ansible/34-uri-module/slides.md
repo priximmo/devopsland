@@ -127,3 +127,92 @@ PARAMETERS :
       validate_certs: False
 ```
 
+------------------------------------------------------------------
+
+# 34 URI MODULE : send HTTP requests
+
+
+<br>
+
+* get the content
+
+```
+- name: test
+  hosts: all
+  tasks:
+  - name: uri
+    uri:
+      url: http://httpbin.org/get
+      return_content: yes
+      method: GET
+    register: __content
+  - name: debug
+    debug:
+      var: __content.content
+```
+
+------------------------------------------------------------------
+
+# 34 URI MODULE : send HTTP requests
+
+
+<br>
+
+* get a specific element
+
+```
+  - name: uri
+    uri:
+      url: https://httpbin.org/get
+      method: GET
+      return_content: yes
+      validate_certs: False
+      body_format: json
+    register: __body
+  - name: debug
+    debug:
+      var: __body.json.url
+```
+
+------------------------------------------------------------------
+
+# 34 URI MODULE : send HTTP requests
+
+
+<br>
+
+* check the content of the response
+
+```
+- name: test
+  hosts: all
+  tasks:
+  - name: uri
+    uri:
+      url: http://xavki.blog
+      return_content: yes
+      method: GET
+      validate_certs: False
+    register: __content
+    failed_when: " 'xavki' not in __content.content"
+```
+
+------------------------------------------------------------------
+
+# 34 URI MODULE : send HTTP requests
+
+
+<br>
+
+* basic auth
+
+```
+  - name: uri
+    uri:
+      url: https://httpbin.org/basic-auth/toto/test
+      user: "toto"
+      password: "test"
+      method: GET
+      validate_certs: False
+```
+
