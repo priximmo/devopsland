@@ -2,7 +2,7 @@
 %author: xavki
 
 
-# 32 PRACTICAL EXERCISE : MONITORING STACK - Node Exporter
+# 33 PRACTICAL EXERCISE : MONITORING STACK - Prometheus
 
 <br>
 
@@ -99,7 +99,7 @@ Node-exporter versionning : how to get the version with ansible
   changed_when: false
   register: __get_node_exporter_version
 ```
-	
+
 --------------------------------------------------------------------------------
 
 # 32 PRACTICAL EXERCICES : MONITORING STACK - Node Exporter
