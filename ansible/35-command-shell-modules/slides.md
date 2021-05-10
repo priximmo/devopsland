@@ -24,7 +24,6 @@ Command vs Shell >
 
 # 35 COMMAND & SHELL MODULES
 
-
 <br>
 
 PARAMETRES : COMMAND
@@ -33,35 +32,19 @@ PARAMETRES : COMMAND
 
 * argv : define your CLI with a list
 
-<br>
-
 * chdir : change the directory where you run the command
-
-<br>
 
 * cmd : the command you want to run
 
-<br>
-
 * creates : the command is not launched if the file exists
-
-<br>
 
 * removes : like creates but the command is launched if the file exists
 
-<br>
-
 * stdin : send a stdin to the command
-
-<br>
 
 * stdin_add_newline : add backline to your stdin
 
-<br>
-
 * strip_empty_ends : remove empty lines
-
-<br>
 
 * warn : activate/deactivate task warnings
 
