@@ -45,6 +45,13 @@ Purposes :
 
 <br>
 
+* docker example
+
+```
+  curl -fsSL https://get.docker.com -o get-docker.sh 2>&1 >/dev/null
+  sudo sh get-docker.sh 2>&1 >/dev/null
+  sudo usermod -aG docker vagrant
+```
 
 ```
 - type: container
