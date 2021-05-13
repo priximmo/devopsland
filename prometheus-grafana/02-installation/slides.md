@@ -63,3 +63,21 @@ docker run -d --name prometheus \
 -p 9090:9090 quay.io/prometheus/prometheus:latest
 ```
 
+--------------------------------------------------------------------------
+
+# 02 PROMETHEUS & GRAFANA : Installation
+
+GRAFANA
+
+<br>
+
+
+* installation
+
+
+```
+sudo wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+sudo apt update -qq >/dev/null
+sudo apt install -qq -y grafana >/dev/null
+```
