@@ -148,6 +148,6 @@ docker run -d \
 ```
   - job_name: node-exporter
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['localhost:9100']
 ```
 

@@ -1,12 +1,12 @@
 %title: LEARN PROMETHEUS & GRAFANA
 %author: xavki
 
-# 03 PROMETHEUS : Concepts & Defintions
+# 03 PROMETHEUS : Concepts & Definitions
 
 
 <br>
 
-Prometheus use the pull mode :
+Prometheus uses the pull mode :
 
 ```
 		server/exporter < prometheus < grafana
@@ -16,7 +16,7 @@ Note : the operation of collect is named "scrape"
 
 -------------------------------------------------------------------------------------
 
-# 03 PROMETHEUS : Concepts & Defintions
+# 03 PROMETHEUS : Concepts & Definitions
 
 
 <br>
@@ -25,11 +25,11 @@ Note : the operation of collect is named "scrape"
 
 		* interval
 
-		* define in job
+		* defined in job
 
 -------------------------------------------------------------------------------------
 
-# 03 PROMETHEUS : Concepts & Defintions
+# 03 PROMETHEUS : Concepts & Definitions
 
 
 <br>
@@ -38,7 +38,7 @@ Note : the operation of collect is named "scrape"
 
 		* to define a scrape
 
-		* specific path : where to fine metrics
+		* specific path : where to fine metrics dns/port/path
 
 		* static_config : to configure a static list of target servers
 
@@ -50,7 +50,7 @@ Note : the operation of collect is named "scrape"
 
 -------------------------------------------------------------------------------------
 
-# 03 PROMETHEUS : Concepts & Defintions
+# 03 PROMETHEUS : Concepts & Definitions
 
 
 <br>
@@ -64,7 +64,7 @@ Note : the operation of collect is named "scrape"
 
 -------------------------------------------------------------------------------------
 
-# 03 PROMETHEUS : Concepts & Defintions
+# 03 PROMETHEUS : Concepts & Definitions
 
 
 <br>
