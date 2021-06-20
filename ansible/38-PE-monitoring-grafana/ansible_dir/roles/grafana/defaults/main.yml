@@ -1,0 +1,4 @@
+---
+# defaults file for roles/grafana
+
+grafana_admin_password: "mypassword"
