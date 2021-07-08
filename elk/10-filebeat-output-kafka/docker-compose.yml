@@ -1,77 +1,38 @@
-version: '3.0'
+version: '2.1'
+
 services:
- zookeeper-1:
-   image: confluentinc/cp-zookeeper:latest
-   environment:
-     ZOOKEEPER_SERVER_ID: 1
-     ZOOKEEPER_CLIENT_PORT: 22181
-     ZOOKEEPER_TICK_TIME: 2000
-     ZOOKEEPER_INIT_LIMIT: 5
-     ZOOKEEPER_SYNC_LIMIT: 2
-     ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-   network_mode: host
- 
- zookeeper-2:
-   image: confluentinc/cp-zookeeper:latest
-   environment:
-     ZOOKEEPER_SERVER_ID: 2
-     ZOOKEEPER_CLIENT_PORT: 32181
-     ZOOKEEPER_TICK_TIME: 2000
-     ZOOKEEPER_INIT_LIMIT: 5
-     ZOOKEEPER_SYNC_LIMIT: 2
-     ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-   network_mode: host
- 
- zookeeper-3:
-   image: confluentinc/cp-zookeeper:latest
-   environment:
-     ZOOKEEPER_SERVER_ID: 3
-     ZOOKEEPER_CLIENT_PORT: 42181
-     ZOOKEEPER_TICK_TIME: 2000
-     ZOOKEEPER_INIT_LIMIT: 5
-     ZOOKEEPER_SYNC_LIMIT: 2
-     ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
-   network_mode: host
+  zoo1:
+    image: zookeeper:3.4.9
+    hostname: zoo1
+    ports:
+      - "2181:2181"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_PORT: 2181
+      ZOO_SERVERS: server.1=zoo1:2888:3888
+    volumes:
+      - ./zk-single-kafka-single/zoo1/data:/data
+      - ./zk-single-kafka-single/zoo1/datalog:/datalog
 
- kafka-1:
-   image: confluentinc/cp-kafka:latest
-   network_mode: host
-   depends_on:
-     - zookeeper-1
-     - zookeeper-2
-     - zookeeper-3
-   environment:
-     KAFKA_BROKER_ID: 1
-     KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
-     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.16.1:19092
-   ports:
-     - 19092:19092
- 
- kafka-2:
-   image: confluentinc/cp-kafka:latest
-   network_mode: host
-   depends_on:
-     - zookeeper-1
-     - zookeeper-2
-     - zookeeper-3
-   environment:
-     KAFKA_BROKER_ID: 2
-     KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
-     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.16.1:29092
-   ports:
-     - 29092:29092
- 
- kafka-3:
-   image: confluentinc/cp-kafka:latest
-   network_mode: host
-   depends_on:
-     - zookeeper-1
-     - zookeeper-2
-     - zookeeper-3
-   environment:
-     KAFKA_BROKER_ID: 3
-     KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
-     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.16.1:39092
-   ports:
-     - '39092:39092' 
-
+  kafka1:
+    image: confluentinc/cp-kafka:5.5.1
+    hostname: kafka1
+    ports:
+      - "9092:9092"
+      - "9999:9999"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka1:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181"
+      KAFKA_BROKER_ID: 1
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_JMX_PORT: 9999
+      KAFKA_JMX_HOSTNAME: ${DOCKER_HOST_IP:-127.0.0.1}
+    volumes:
+      - ./zk-single-kafka-single/kafka1/data:/var/lib/kafka/data
+    depends_on:
+      - zoo1
