@@ -1,0 +1,27 @@
+- name: install docker
+  hosts: all
+  vars:
+    nodeList: []
+  become: yes
+  tasks:
+
+  - name: fact
+    set_fact:
+      nodeList: "{{ [ hostvars[item]['ansible_hostname'] ] + nodeList }}"
+    with_items: "{{ groups['all'] }}"
+    when: inventory_hostname in groups['managers'][0]
+
+  - name: Inspect swarm
+    docker_swarm:
+      state: inspect
+    register: __swarm_info
+    
+  - name: print swarm infos
+    debug:
+      var: __swarm_info
+
+
+
+
+
+
