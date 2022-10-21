@@ -1,0 +1,156 @@
+%title: LEARN DOCKER
+%author: xavki
+
+
+# 10 DOCKER : Layers
+
+
+<br>
+
+What's a layer ?
+
+* two kinds of layers:
+	- read only (RO) > Image
+	- read & write (RW) > Container
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+* An image can share its layers (local or remote registry)
+
+```
+	image 1       |     image 2
+  layer 1             layer A
+  layer 2             layer B
+             layer 3
+  layer 4             layer D
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+* When we launch a container ?
+
+```
+	 container 1  |   container 2
+R  layer 1           layer A
+R  layer 2           layer B
+R            layer 3
+R  layer 4           layer D
+RW layer 5           layer E
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+What's a layer ? The Dockerfile
+
+```
+FROM ubuntu:latest
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends vim
+RUN apt-get install -y --no-install-recommends git
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+How to list image layers ?
+
+```
+docker history <myimage:mytag>
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+The output
+
+```
+└─ $ ▶ docker history xavki:v1.0 --format "{{.ID}}\t{{.CreatedBy}}"
+7c995f4a51d8	/bin/sh -c apt-get install -y --no-install-r…
+71a2fedce726	/bin/sh -c apt-get install -y --no-install-r…
+7b957bd8d60d	/bin/sh -c apt-get update
+ea4c82dcd15a	/bin/sh -c #(nop)  CMD ["/bin/bash"]
+<missing>	/bin/sh -c mkdir -p /run/systemd && echo 'do…
+<missing>	/bin/sh -c rm -rf /var/lib/apt/lists/*
+<missing>	/bin/sh -c set -xe   && echo '#!/bin/sh' > /…
+<missing>	/bin/sh -c #(nop) ADD file:bcd068f67af2788db…
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+Wrong Dockerfile
+
+```
+FROM ubuntu:latest
+RUN wget https://github.com/.../node_exporter-1.4.0.linux-amd64.tar.gz
+RUN tar xzvf node_exporter-1.4.0.linux-amd64.tar.gz
+RUN ...
+RUN rm -f node_exporter-1.4.0.linux-amd64.tar.gz
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+Better to have a consistent layer
+
+```
+FROM ubuntu:latest
+RUN wget https://github.com/.../node_exporter-1.4.0.linux-amd64.tar.gz \
+    tar xzvf node_exporter-1.4.0.linux-amd64.tar.gz \
+    ... \
+    rm -f node_exporter-1.4.0.linux-amd64.tar.gz
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+When you work with a container ?
+
+```
+docker run -d --name test debian:latest sleep infinity
+docker exec -ti test bash
+touch toto
+rm -rf srv/
+```
+
+-----------------------------------------------------------
+
+# 10 DOCKER : Layers
+
+<br>
+
+What happens ?
+
+```
+└─ $ ▶ docker diff test
+A /toto
+D /srv
+```
+
